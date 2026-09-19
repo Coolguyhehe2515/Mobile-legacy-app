@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mobile Legacy</string>
-    <string name="config" translatable="false"><![CDATA[{
-        "displayName": "Mobile Legacy (OpenGL 4.0, 1.12.2+)",
-        "rendererId": "opengles3",
-        "rendererGLPath": "**|libmobileglues.so",
-        "rendererEGLPath": "**|libmobileglues.so",
-        "dlopenLibPaths": [],
-        "env": [
-            {
-                "NormalEnv": {
-                    "key": "LIBGL_ES",
-                    "value": "3"
-                }
-            }
-        ],
-        "minMCVer": "1.12.2",
-        "maxMCVer": null
-    }]]></string>
 </resources>
