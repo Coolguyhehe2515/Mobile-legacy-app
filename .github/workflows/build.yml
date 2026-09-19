@@ -32,10 +32,10 @@ jobs:
           mkdir -p app/src/main/jniLibs/armeabi-v7a
           mkdir -p app/src/main/jniLibs/x86
           mkdir -p app/src/main/jniLibs/x86_64
-          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook/libmobileglues_arm64.so" -o app/src/main/jniLibs/arm64-v8a/libmobileglues.so
-          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook/libmobileglues_32.so" -o app/src/main/jniLibs/armeabi-v7a/libmobileglues.so
-          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook/libmobileglues_x86.so" -o app/src/main/jniLibs/x86/libmobileglues.so
-          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook/libmobileglues_x86_64.so" -o app/src/main/jniLibs/x86_64/libmobileglues.so
+          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook_2/libmobileglues_arm64.so" -o app/src/main/jniLibs/arm64-v8a/libmobileglues.so
+          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook_2/libmobileglues_arm32.so" -o app/src/main/jniLibs/armeabi-v7a/libmobileglues.so
+          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook_2/libmobileglues_x86.so" -o app/src/main/jniLibs/x86/libmobileglues.so
+          curl -fL "https://github.com/Coolguyhehe2515/Mobile-legacy/releases/download/Hook_2/libmobileglues_x86_64.so" -o app/src/main/jniLibs/x86_64/libmobileglues.so
         shell: bash
 
       - name: Set up Gradle
