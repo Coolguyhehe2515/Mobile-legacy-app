@@ -18,6 +18,14 @@ android {
         release {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("debug")
+
+            resValue("string", "app_name", "Mobile Legacy")
+            manifestPlaceholders["des"] = "Mobile Legacy (OpenGL 4.0, 1.12.2+)"
+            manifestPlaceholders["renderer"] = "Mobile Legacy:libmobileglues.so:libmobileglues.so"
+            manifestPlaceholders["minMCVer"] = "1.12.2"
+            manifestPlaceholders["maxMCVer"] = ""
+            manifestPlaceholders["pojavEnv"] =
+                "LIBGL_ES=3:POJAV_RENDERER=opengles3:POJAVEXEC_EGL=libmobileglues.so:LIBGL_EGL=libmobileglues.so"
         }
     }
 
