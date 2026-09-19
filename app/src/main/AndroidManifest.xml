@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:allowBackup="false"
+        android:extractNativeLibs="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data android:name="fclPlugin" android:value="true" />
+        <meta-data android:name="zalithRendererPlugin" android:value="true" />
+        <meta-data android:name="renderer" android:value="Mobile Legacy:libmobileglues.so" />
+        <meta-data android:name="pojavEnv" android:value="POJAV_RENDERER=opengles3" />
+    </application>
+</manifest>
