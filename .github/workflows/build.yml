@@ -2,6 +2,12 @@ name: Build Mobile Legacy
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - toggles.json
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -13,13 +19,39 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check toggle
+        id: toggle
+        shell: bash
+        run: |
+          status=$(jq -r '.status // "off"' toggles.json)
+          if [ "$status" = "on" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "Actions toggle is off. Skipping build."
+          fi
+
+      - name: Reset toggle
+        if: steps.toggle.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          jq '.status = "off"' toggles.json > toggles.json.tmp
+          mv toggles.json.tmp toggles.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add toggles.json
+          git commit -m "Reset Actions toggle to off"
+          git push
+
       - name: Set up JDK
+        if: steps.toggle.outputs.enabled == 'true'
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
 
       - name: Prepare Android SDK
+        if: steps.toggle.outputs.enabled == 'true'
         run: |
           export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
           yes | sdkmanager --licenses >/dev/null || true
@@ -27,6 +59,7 @@ jobs:
         shell: bash
 
       - name: Download renderer binaries
+        if: steps.toggle.outputs.enabled == 'true'
         run: |
           mkdir -p app/src/main/jniLibs/arm64-v8a
           mkdir -p app/src/main/jniLibs/armeabi-v7a
@@ -39,14 +72,17 @@ jobs:
         shell: bash
 
       - name: Set up Gradle
+        if: steps.toggle.outputs.enabled == 'true'
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.11.1"
 
       - name: Build APK
+        if: steps.toggle.outputs.enabled == 'true'
         run: gradle assembleRelease --no-daemon
 
       - name: Upload APK
+        if: steps.toggle.outputs.enabled == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: Mobile-Legacy
