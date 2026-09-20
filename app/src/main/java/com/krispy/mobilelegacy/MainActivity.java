@@ -25,7 +25,7 @@ public final class MainActivity extends Activity {
             WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         );
 
-        setContentView(new AuthorizationView());
+        setContentView(new new AuthorizationView(MainActivity.this));
     }
 
     private static final class AuthorizationView extends View {
@@ -37,7 +37,7 @@ public final class MainActivity extends Activity {
         private boolean animating;
         private long animationStart;
 
-        AuthorizationView() {
+        AuthorizationView(Activity activity) {
             super(null);
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             paint.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
