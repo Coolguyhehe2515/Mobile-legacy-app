@@ -25,7 +25,7 @@ public final class MainActivity extends Activity {
             WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         );
 
-        setContentView(new new AuthorizationView(MainActivity.this));
+        setContentView(new AuthorizationView(MainActivity.this));
     }
 
     private static final class AuthorizationView extends View {
