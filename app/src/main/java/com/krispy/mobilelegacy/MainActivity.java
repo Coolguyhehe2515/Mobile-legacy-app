@@ -38,7 +38,7 @@ public final class MainActivity extends Activity {
         private long animationStart;
 
         AuthorizationView(Activity activity) {
-            super(null);
+            super(activity);
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             paint.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
             glow.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
