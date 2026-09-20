@@ -2,6 +2,7 @@ package com.krispy.mobilelegacy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.graphics.Canvas;
@@ -37,10 +38,16 @@ public final class MainActivity extends Activity {
         private final Activity activity;
         private boolean authorized, about, animating;
         private long animationStart;
+        private final SharedPreferences prefs;
+
+        private static final String PREFS_NAME = "mobile_legacy_state";
+        private static final String KEY_AUTHORIZED = "authorized";
 
         AuthorizationView(Activity activity) {
             super(activity);
             this.activity = activity;
+            prefs = activity.getSharedPreferences(PREFS_NAME, Activity.MODE_PRIVATE);
+            authorized = prefs.getBoolean(KEY_AUTHORIZED, false);
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             paint.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
             glow.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
@@ -65,6 +72,7 @@ public final class MainActivity extends Activity {
                 } else {
                     animating = false;
                     authorized = true;
+                    prefs.edit().putBoolean(KEY_AUTHORIZED, true).apply();
                     invalidate();
                 }
             }
