@@ -138,7 +138,7 @@ public final class MainActivity extends Activity {
         }
 
         private void drawNavigation(Canvas c,float w,float h,int accent) {
-            float top=h-76f;
+            float top=h-116f;
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.argb(220,10,13,16));
             c.drawRect(0,top,w,h,paint);
